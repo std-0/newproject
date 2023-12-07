@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'Добро пожаловать на мой первый Laravel-сайт!';
+    return view('.index');
 });
 
-// Route::get('/hello', function () {
-// 	$name = 'Малай Михаил';
-//     $skills= ['HTML', 'CSS', 'PHP', 'JavaScript', 'C++'];
-//     return view('hello', ['name' => $name, 'skills' => $skills]);
-// });
-Route::get('/hello', function (){
-return view('hello');
-});
 Route::get('/app', function (){
     return view('layouts.app');
     });
+
+Route::get('/about', function (){
+    return view('partials.about');
+    });    
+
+Route::get('/contact', function (){
+    return view('partials.contact');
+    });
     
+Route::get('/services', function (){
+    return view('partials.services');
+    });
