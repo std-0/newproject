@@ -62,5 +62,7 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "ckeditor/ckeditor": "^4.17.1"
+
 }

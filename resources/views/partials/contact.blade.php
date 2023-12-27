@@ -1,31 +1,26 @@
 @extends('layouts.app')
 
-<title>Contact</title>
+<title>contact</title>
 
 @section('content')
+    <div id="home" class="w3-content">
 
-<h1 class="top">Contacte</h1>
-<div class="container">
-    <div class="content col-md-6">
-  <form action="#">
-    <label for="fname">Nume</label>
-    <input type="text" id="fname" name="firstname" placeholder="Numele dumneavostră:">
+        <div id="contact" class="w3-container w3-center w3-padding-32">
 
-    <label for="lname">Prenume</label>
-    <input type="text" id="lname" name="lastname" placeholder="Prenumele dumneavostră:">
+            <h2 class="w3-wide">CONTACTE</h2>
+            Moldova, Vom vedea<br>
+            Phone: +373 060010101<br>
+            Email: examnple@mail.com<br>
+            <p class="w3-opacity w3-center"><i>Doriți să ne contactați? Scrieți!</i></p>
 
-    <label for="country">Țara de origine</label>
-    <select id="country" name="tara">
-      <option value="md">Moldova</option>
-      <option value="uk">Ucraina</option>
-      <option value="ro">Romania</option>
-    </select>
+            <form action="/action_page.php" target="_blank">
+                <input type="text" class="form-control" placeholder="Nume">
+                <input type="text" class="form-control" placeholder="Prenume">
+                <label for="comment">Mesaj:</label>
+                <textarea class="form-control" rows="5" id="comment" name="text"></textarea> <br>
+                <button class="w3-button w3-black" type="submit">Trimite</button>
+            </form>
+        </div>
 
-    <label for="subject">Comentariu</label>
-    <textarea id="subject" name="subject" placeholder="Aici scrieți comentariul" style="height:200px"></textarea>
-
-    <input type="submit" value="Trimite">
-  </form>
-  </div>
-</div>
+    </div>
 @endsection

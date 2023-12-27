@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Article;
+use App\Models\Category;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,23 +17,48 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('.index');
+    $articles = Article::all();
+    return view('index', ['articles' => $articles]);
 });
 
-Route::get('/app', function (){
-    return view('layouts.app');
-    });
+Route::get('/app', function () {
+    $articles = Article::all();
+    return view('partials.article_list', ['articles' => $articles]);
 
-Route::get('/about', function (){
+});
+
+
+
+Route::get('/about', function () {
     return view('partials.about');
-    });    
+});
 
-Route::get('/contact', function (){
+Route::get('/contact', function () {
     return view('partials.contact');
-    });
-    
-Route::get('/services', function (){
-    return view('partials.services');
-    });
+});
+
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
+Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
+Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
+Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+
+Route::resource('categories', CategoryController::class);
+
+// Route::middleware(['auth'])->group(function () {
+//     // Здесь находятся маршруты, которые используют middleware 'auth'
+//     Route::get('/dashboard', 'DashboardController@index');
+//     Route::get('/profile', 'ProfileController@index');
+// });
+
+// Route::prefix('admin')->group(function () {
+//     // Все маршруты внутри этой группы будут иметь префикс 'admin'
+//     Route::get('/dashboard', 'AdminController@dashboard');
+//     Route::get('/users', 'AdminController@users');
+//     Route::get('/settings', 'AdminController@settings');
+// });
+
+Route::delete('/articles/{id}/delete-image', [ArticleController::class, 'deleteImage'])->name('articles.deleteImage');
