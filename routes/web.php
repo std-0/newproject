@@ -18,7 +18,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 Route::get('/', function () {
-    $articles = Article::all();
+    $articles = Article::take(6)->get();
     return view('index', ['articles' => $articles]);
 });
 
@@ -45,7 +45,7 @@ Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles
 Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
 Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
 Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
-
+Route::get('/view-articles', [ArticleController::class, 'viewAllArticles'])->name('articles.viewAll');
 Route::resource('categories', CategoryController::class);
 
 // Route::middleware(['auth'])->group(function () {

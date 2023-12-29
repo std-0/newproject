@@ -15,11 +15,17 @@ class ArticleController extends Controller
      */
 
 
-    public function index()
-    {
-        $articles = Article::all();
-        return view('articles.index', compact('articles'));
-    }
+     public function index()
+     {
+         $articles = Article::take(6)->get(); // Ia doar primele 6 articole
+         return view('articles.index', compact('articles'));
+     }
+     
+     public function viewAllArticles()
+     {
+         $articles = Article::all(); // Ia toate articolele
+         return view('articles.view_all', compact('articles'));
+     }
 
     /**
      * Показать форму для создания новой статьи.

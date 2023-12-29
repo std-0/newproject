@@ -26,8 +26,9 @@
             <div class="headlist col-lg-7">
                 <a href="/" class="head">Home</a>
                 <a href="/about" class="head">About</a>
-                <a href="{{ route('articles.index') }}" class="head">Articole</a>
-                <a href="{{ route('categories.index') }}" class="head">Categorii</a>
+                <a href="{{ route('articles.viewAll') }}" class="head">Articole</a>
+                <a href="{{ route('articles.index') }}" class="head">Edit-Articls</a>
+                <a href="{{ route('categories.index') }}" class="head">Edit-Categories</a>
                 <a href="/contact" class="head">Contact</a>
             </div>
         </nav>
