@@ -17,26 +17,9 @@ use App\Http\Controllers\CategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    $articles = Article::take(6)->get();
-    return view('index', ['articles' => $articles]);
-});
-
-Route::get('/app', function () {
-    $articles = Article::all();
-    return view('partials.article_list', ['articles' => $articles]);
-
-});
-
-
-
-Route::get('/about', function () {
-    return view('partials.about');
-});
-
-Route::get('/contact', function () {
-    return view('partials.contact');
-});
+Route::get('/', [ArticleController::class, 'indexHome'])->name('home');
+Route::get('/about', [ArticleController::class, 'about'])->name('about');
+Route::get('/contact', [ArticleController::class, 'contact'])->name('contact');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
@@ -47,7 +30,7 @@ Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articl
 Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 Route::get('/view-articles', [ArticleController::class, 'viewAllArticles'])->name('articles.viewAll');
 Route::resource('categories', CategoryController::class);
-
+Route::delete('/articles/{id}/delete-image', [ArticleController::class, 'deleteImage'])->name('articles.deleteImage');
 // Route::middleware(['auth'])->group(function () {
 //     // Здесь находятся маршруты, которые используют middleware 'auth'
 //     Route::get('/dashboard', 'DashboardController@index');
@@ -60,5 +43,3 @@ Route::resource('categories', CategoryController::class);
 //     Route::get('/users', 'AdminController@users');
 //     Route::get('/settings', 'AdminController@settings');
 // });
-
-Route::delete('/articles/{id}/delete-image', [ArticleController::class, 'deleteImage'])->name('articles.deleteImage');
