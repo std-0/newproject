@@ -73,11 +73,7 @@ class ArticleController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
-        } else {
-
-            $imageName = 'logo.png';
-        }
-
+        } 
         $article = new Article([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
