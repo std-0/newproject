@@ -5,14 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Înregistrare') }}</div>
+                <div class="card-header top" style="color: #b8f1e2; font-size: 25px;">
+                    {{ __('Înregistrare') }}
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register_process') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-6 col-form-label text-md-right">{{ __('Nume') }}</label>
+                        <div class="form-group row top">
+                            <label for="name" class="col-md-6 col-form-label text-md-right " >{{ __('Nume') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" style="padding: 7px !important; border: 1px solid !important;" name="name" value="{{ old('name') }}"
@@ -20,7 +22,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row top">
                             <label for="email" class="col-md-6 col-form-label text-md-right" style="margin-bottom: 15px;">{{ __('E-Mail')
                                 }}</label>
 
@@ -30,7 +32,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row top">
                             <label for="password" class="col-md-6 col-form-label text-md-right" style="margin-bottom: 15px;">{{ __('Parolă')
                                 }}</label>
 
@@ -40,7 +42,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row top">
                             <label for="password-confirm" class="col-md-6 col-form-label text-md-right">{{ __('Confirmă Parola') }}</label>
 
                             <div class="col-md-6">
@@ -51,7 +53,7 @@
 
                         <div class="form-group row mb-0" style="padding-top: 25px;">
                             <div class="col-md-6 offset-md-4" >
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="d-flex align-items-center btn btn-primary">
                                     {{ __('Înregistrare') }}
                                 </button>
                             </div>

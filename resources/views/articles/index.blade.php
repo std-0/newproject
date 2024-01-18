@@ -31,6 +31,7 @@
                                         <button type="submit"
                                             class="d-flex align-items-center btn btn-danger">Șterge</button>
                                     </form>
+
                                 </div>
                                 <div class="col-sm-3">
                                     <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-info">Editează
