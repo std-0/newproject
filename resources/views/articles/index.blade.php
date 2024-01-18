@@ -10,8 +10,15 @@
                     <div class="article-list mr-3">
                         <div class="article">
                             <div class="image">
-                                <img src="{{ asset('images/' . $article->image) }}" alt="{{ $article->title }}"
+                                @if($article->image) 
+                                    <img src="{{ asset('images/' . $article->image) }}" alt="{{ $article->title }}"
                                     style="width: 290px; height: 200px;">
+                                
+                                @else
+                                    <img src="{{ asset('images/logo.png') }}" alt="{{ $article->title }}"
+                                        style="width: 290px; height: 200px;">
+                                @endif
+                                
                             </div>
                             <h5><a href="{{ route('articles.show', $article->id) }}"
                                     class="line">{{ $article->title }}</a>
@@ -24,6 +31,7 @@
                                         <button type="submit"
                                             class="d-flex align-items-center btn btn-danger">Șterge</button>
                                     </form>
+
                                 </div>
                                 <div class="col-sm-3">
                                     <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-info">Editează

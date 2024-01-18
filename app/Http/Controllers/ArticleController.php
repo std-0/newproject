@@ -15,27 +15,39 @@ class ArticleController extends Controller
      */
 
 
+     public function indexHome()
+     {
+         $articles = Article::limit(6)->get();
+         return view('index', ['articles' => $articles]);
+     }
+ 
+     public function about()
+     {
+         return view('partials.about');
+     }
+ 
+     public function contact()
+     {
+         return view('partials.contact');
+     }
+ 
      public function index()
      {
-         $articles = Article::take(6)->get(); // Ia doar primele 6 articole
+         $articles = Article::all();
          return view('articles.index', compact('articles'));
      }
-     
+ 
      public function viewAllArticles()
      {
-         $articles = Article::all(); // Ia toate articolele
+         $articles = Article::all();
          return view('articles.view_all', compact('articles'));
      }
-
-    /**
-     * Показать форму для создания новой статьи.
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $categories = Category::all();
-        return view('articles.create', compact('categories'));
-    }
+ 
+     public function create()
+     {
+         $categories = Category::all();
+         return view('articles.create', compact('categories'));
+     }
 
 
 
@@ -61,11 +73,7 @@ class ArticleController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
-        } else {
-
-            $imageName = 'logo.png';
-        }
-
+        } 
         $article = new Article([
             'title' => $request->input('title'),
             'body' => $request->input('body'),

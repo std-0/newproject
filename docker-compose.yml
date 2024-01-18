@@ -1,0 +1,34 @@
+services:
+  webserver:
+    image: nginx:alpine
+    ports:
+      - 100:80
+    volumes:
+      - ./:/var/www/public_html
+      - ./docker/nginx:/etc/nginx/conf.d
+
+  phprun:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./:/var/www/public_html
+
+  sqlserver:
+    image: mysql:8.0
+    volumes:
+      - lardb:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 200:8080
+
+volumes:
+  lardb:
+  

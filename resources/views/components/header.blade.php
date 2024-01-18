@@ -1,10 +1,9 @@
 <header class="right">
     <div class="container-fluid">
         <nav class="list">
-            <div class="logo col-lg-5">
+            <div class="logo col-lg-4">
                 <a href="/" class="head">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="60" height="60"
-                        viewBox="0 0 80 80">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="60" height="60" viewBox="0 0 80 80">
                         <path fill="#e1ebf2"
                             d="M42.471,77.5c3.56-1.682,6.029-5.308,6.029-9.5V10.5h27V68c0,5.238-4.262,9.5-9.5,9.5H42.471z">
                         </path>
@@ -23,13 +22,29 @@
                     </svg>
                 </a>
             </div>
-            <div class="headlist col-lg-7">
-                <a href="/" class="head">Home</a>
-                <a href="/about" class="head">About</a>
+            <div class="headlist col-lg-6">
+                <a href="/" class="head">Acasă</a>
+                <a href="/about" class="head">Despre Noi</a>
                 <a href="{{ route('articles.viewAll') }}" class="head">Articole</a>
-                <a href="{{ route('articles.index') }}" class="head">Edit-Articls</a>
-                <a href="{{ route('categories.index') }}" class="head">Edit-Categories</a>
-                <a href="/contact" class="head">Contact</a>
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
+                    <a href="{{ route('articles.index') }}" class="head">Edit-Articole</a>
+                    <a href="{{ route('categories.index') }}" class="head">Categorii</a>
+                    <a href="{{ route('users.index') }}" class="head">Useri</a>
+                    <a href="{{ route('roles.index') }}" class="head">Roluri</a>
+                @endif
+                <a href="/contact" class="head">Contacte</a>
+            </div>
+            <div class="login col-lg-2">
+                @if(auth()->check())
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="d-flex align-items-center btn btn-primary">Deconectează-te</button>
+                </form>
+                @else
+
+                <a href="{{ route('login') }}" class="head">Autentificare</a>
+                <a href="{{ route('register') }}" class="head">Înregistrare</a>
+                @endif
             </div>
         </nav>
     </div>
