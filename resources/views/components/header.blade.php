@@ -23,18 +23,22 @@
                 </a>
             </div>
             <div class="headlist col-lg-6">
-                <a href="/" class="head">Home</a>
-                <a href="/about" class="head">About</a>
+                <a href="/" class="head">Acasă</a>
+                <a href="/about" class="head">Despre Noi</a>
                 <a href="{{ route('articles.viewAll') }}" class="head">Articole</a>
-                <a href="{{ route('articles.index') }}" class="head">Edit-Articls</a>
-                <a href="{{ route('categories.index') }}" class="head">Edit-Categories</a>
-                <a href="/contact" class="head">Contact</a>
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
+                    <a href="{{ route('articles.index') }}" class="head">Edit-Articole</a>
+                    <a href="{{ route('categories.index') }}" class="head">Categorii</a>
+                    <a href="{{ route('users.index') }}" class="head">Useri</a>
+                    <a href="{{ route('roles.index') }}" class="head">Roluri</a>
+                @endif
+                <a href="/contact" class="head">Contacte</a>
             </div>
             <div class="login col-lg-2">
                 @if(auth()->check())
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="d-flex align-items-center btn btn-primary">Выход</button>
+                    <button type="submit" class="d-flex align-items-center btn btn-primary">Deconectează-te</button>
                 </form>
                 @else
 
