@@ -19,6 +19,7 @@ class RegisterController extends Controller
             "name" => ["required", "string"],
             "email" => ["required", "email", "string", "unique:users,email"],
             "password" => ["required", "confirmed"]
+            
         ]);
         
         $user = User::create([

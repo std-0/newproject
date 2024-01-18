@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\Role;
 class LoginController extends Controller
 {
     public function show()
@@ -21,7 +21,11 @@ class LoginController extends Controller
         ]);
 
         if(auth("web")->attempt($data)) {
-            return redirect(route("home"));
+            if (auth()->user()->hasRole('admin')) {
+                return redirect(route("articles.index"));
+            } else {
+                return redirect(route("home"));
+            }
         }
 
         return redirect(route("login"))->withErrors(["email" => "Пользователь не найден, либо данные введены неверно"]);
